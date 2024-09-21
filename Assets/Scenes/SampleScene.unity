@@ -1214,18 +1214,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4679347250008068039, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4679347250008068039, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4679347250008068039, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 7493498474780544496, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
