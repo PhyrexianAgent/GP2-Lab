@@ -6,7 +6,6 @@ public class LookAtMouse : MonoBehaviour
 {
     [SerializeField] private float lookSensitivity = 100f;
     [SerializeField] private float clampAngle = 80f;
-    [SerializeField] private Camera camera;
 
     private float lookRotX;
     void Start()
