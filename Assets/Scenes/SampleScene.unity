@@ -1396,7 +1396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8597820343575634893, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: m_Name
-      value: Capsule
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

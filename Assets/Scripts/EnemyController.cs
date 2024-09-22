@@ -20,8 +20,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float lookTime = 1f;
     [SerializeField] private float initialLookTime = 3f;
     [SerializeField, Range(0, 1)] private float minimumDot = 0.1f;
-    [SerializeField] private float chaseDist = 5f;
-    [SerializeField] private float attackDist = 3f;
+    [SerializeField] private float chaseDist = 6f;
+    [SerializeField] private float attackDist = 4f;
     [SerializeField] private float patrolStoppingDistance = 1f;
 
     private NavMeshAgent nav;
@@ -33,7 +33,6 @@ public class EnemyController : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         StartCoroutine(Sleep(initialLookTime));
-        //nav.destination = patrolPoints[0].position;
     }
 
     float MinValue(float value, float min){
@@ -70,7 +69,7 @@ public class EnemyController : MonoBehaviour
                     state = State.CHASE;
                     break;
                 }*/
-                if (nav.remainingDistance == 0){//Vector3.Distance(transform.position, patrolPoints[pointIndex].position) <= patrolStoppingDistance){
+                if (nav.remainingDistance == 0){
                     state = State.LOOKING_AROUND;
                     StartCoroutine(Sleep(lookTime));
                 }
@@ -93,5 +92,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         StateActions();
+        Debug.DrawLine(transform.position, transform.position + transform.forward * chaseDist, Color.blue, 0);
+        Debug.DrawLine(transform.position, transform.position + transform.forward * attackDist, Color.red, 0);
     }
 }
