@@ -1336,12 +1336,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1807514311}
+    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+      propertyPath: patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2012013923}
+    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+      propertyPath: patrolPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1823585195}
+    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+      propertyPath: patrolPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 816233880}
     - target: {fileID: 8346590314366586729, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.53

@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4942594815335571636}
   - component: {fileID: 2852698626174528499}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,6 +259,9 @@ MonoBehaviour:
   lookTime: 1
   initialLookTime: 3
   minimumDot: 0.73
+  chaseDist: 5
+  attackDist: 3
+  patrolStoppingDistance: 1
 --- !u!195 &2852698626174528499
 NavMeshAgent:
   m_ObjectHideFlags: 0
