@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        
+        EnemyController.player = transform;
     }
 
     // Update is called once per frame

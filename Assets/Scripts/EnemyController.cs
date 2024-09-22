@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static Transform player;
+    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private float lookTime = 1f;
+    [SerializeField] private float initialLookTime = 3f;
+
+    private UnityEngine.AI.NavMeshAgent nav;
+
     void Start()
     {
-        
+        nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
-    // Update is called once per frame
+    bool CanSeePlayer(){
+        Vector3 diff = player.position - transform.position;
+        diff.Normalize();
+        return Vector3.Dot(Vector3.forward, diff) > 0;
+    }
     void Update()
     {
-        
+        if (CanSeePlayer()){
+            Debug.Log("Can See Player");
+        }
+        else{
+            Debug.Log("Cant See Player");
+        }
     }
 }
