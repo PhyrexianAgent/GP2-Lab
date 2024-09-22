@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     bool CanSeePlayer(){
         Vector3 diff = player.position - transform.position;
         diff.Normalize();
-        return Vector3.Dot(Vector3.forward, diff) > 0;
+        return Vector3.Dot(transform.forward, diff) > 0;
     }
     void Update()
     {
