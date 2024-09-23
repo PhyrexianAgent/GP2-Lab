@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
         PATROLLING_TO_POINT,
         LOOKING_AROUND,
         CHASE,
+        ATTACKING,
         INVESTIGATING,
         RETURN_TO_HQ,
         SLEEP,
@@ -23,11 +24,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float chaseDist = 6f;
     [SerializeField] private float attackDist = 4f;
     [SerializeField] private float patrolStoppingDistance = 1f;
+    [SerializeField] private float attackDuration = 2f;
 
     private NavMeshAgent nav;
     private State state = State.SLEEP_START;
     private int pointIndex = 0;
     private bool doneSleeping = false;
+    private Coroutine lookCoroutine;
+    private Coroutine attackCoroutine;
+    private bool playerWasHit = false;
 
     void Start()
     {
@@ -53,8 +58,12 @@ public class EnemyController : MonoBehaviour
         return MinValue(Vector3.Dot(transform.forward, diff), minimumDot) > 0;
     }
 
-    bool CanSeePlayer(){
-        return PlayerInViewAngle() && Vector3.Distance(transform.position, player.position) <= chaseDist;
+    bool InChaseDistance(){
+        return Vector3.Distance(transform.position, player.position) <= chaseDist;
+    }
+
+    bool InAttackDistance(){
+        return Vector3.Distance(transform.position, player.position) <= attackDist;
     }
 
     IEnumerator Sleep(float seconds){
@@ -62,16 +71,33 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         doneSleeping = true;
     }
+
+    IEnumerator Attack(){
+        yield return new WaitForSeconds(attackDuration);
+        playerWasHit = true;
+    }
+
     void StateActions(){
         switch(state){
             case State.PATROLLING_TO_POINT:
-                /*if (CanSeePlayer()){
-                    state = State.CHASE;
-                    break;
-                }*/
+                if (PlayerInViewAngle()){
+                    if (InChaseDistance()){
+                        if (InAttackDistance()){
+                            if (lookCoroutine != null)
+                                StopCoroutine(lookCoroutine);
+                            if (InAttackDistance()){
+                                state = State.ATTACKING;
+                                attackCoroutine = StartCoroutine(Attack());
+                                break;
+                            }
+                            state = State.CHASE;
+                            break;
+                        }
+                    }
+                }
                 if (nav.remainingDistance == 0){
                     state = State.LOOKING_AROUND;
-                    StartCoroutine(Sleep(lookTime));
+                    lookCoroutine = StartCoroutine(Sleep(lookTime));
                 }
                 break;
             case State.LOOKING_AROUND:
@@ -86,6 +112,27 @@ public class EnemyController : MonoBehaviour
                     state = State.PATROLLING_TO_POINT;
                     nav.destination = patrolPoints[pointIndex].position;
                 }
+                break;
+            case State.CHASE:
+                nav.destination = player.position;
+                if (InAttackDistance()){
+                    state = State.ATTACKING;
+                    attackCoroutine = StartCoroutine(Attack());
+                }
+                else if (!InChaseDistance()){
+                    state = State.PATROLLING_TO_POINT;
+                    nav.destination = patrolPoints[pointIndex].position;
+                }
+                break;
+            case State.ATTACKING:
+                nav.destination = player.position;
+                if (!InAttackDistance() && InChaseDistance()){
+                    if (attackCoroutine != null)
+                        StopCoroutine(attackCoroutine);
+                    state = State.CHASE;
+                }
+                if (playerWasHit)
+                    Debug.Log("player hit");
                 break;
         }
     }

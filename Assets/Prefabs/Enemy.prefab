@@ -242,7 +242,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &4942594815335571636
 MonoBehaviour:
@@ -263,6 +263,7 @@ MonoBehaviour:
   chaseDist: 5
   attackDist: 3
   patrolStoppingDistance: 1
+  attackDuration: 2
 --- !u!195 &2852698626174528499
 NavMeshAgent:
   m_ObjectHideFlags: 0
