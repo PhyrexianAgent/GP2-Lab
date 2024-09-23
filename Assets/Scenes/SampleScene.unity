@@ -1481,6 +1481,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+      propertyPath: chaseDist
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+      propertyPath: attackDist
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 4
       objectReference: {fileID: 0}

@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     }
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private Transform hqPoint;
-    [SerializeField] private float lookTime = 1f;
+    [SerializeField] private float lookTime = 2f;
     [SerializeField] private float sleepTime = 3f;
     [SerializeField, Range(0, 1)] private float minimumDot = 0.1f;
     [SerializeField] private float chaseDist = 6f;
@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float patrolStoppingDistance = 1f;
     [SerializeField] private float attackDuration = 2f;
     [SerializeField] private bool canChase = true;
+    [SerializeField] private float chaseSpeed = 8f;
 
     private NavMeshAgent nav;
     private State state = State.SLEEP;
@@ -34,10 +35,12 @@ public class EnemyController : MonoBehaviour
     private Coroutine lookCoroutine;
     private Coroutine attackCoroutine;
     private bool playerWasHit = false;
+    private float patrolSpeed;
 
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
+        patrolSpeed = nav.speed;
         StartCoroutine(Sleep(sleepTime));
     }
 
@@ -79,12 +82,14 @@ public class EnemyController : MonoBehaviour
                     StopCoroutine(lookCoroutine);
                 state = State.ATTACKING;
                 attackCoroutine = StartCoroutine(Attack());
+                nav.speed = chaseSpeed;
                 return true;
             }
             else if (InChaseDistance()){
                 if (lookCoroutine != null)
                     StopCoroutine(lookCoroutine);
                 state = State.CHASE;
+                nav.speed = chaseSpeed;
                 return true;
             }
         }
@@ -132,6 +137,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else if (!InChaseDistance()){
                     state = State.PATROLLING_TO_POINT;
+                    nav.speed = patrolSpeed;
                     nav.destination = patrolPoints[pointIndex].position;
                 }
                 break;
@@ -146,6 +152,7 @@ public class EnemyController : MonoBehaviour
                     if (attackCoroutine != null)
                         StopCoroutine(attackCoroutine);
                     state = State.RETURN_TO_HQ;
+                    nav.speed = patrolSpeed;
                     nav.destination = hqPoint.position;
                 }
                 break;
