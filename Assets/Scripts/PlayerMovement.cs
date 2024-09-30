@@ -11,10 +11,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
     }
-    void Start()
-    {
-        EnemyController.player = transform;
-    }
 
     // Update is called once per frame
     void Update()
