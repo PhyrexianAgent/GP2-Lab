@@ -24,6 +24,7 @@ public class LookingAround : BaseState
     }
 
     public override void OnEnter(){
+        Debug.Log("looking");
         doneLooking = false;
         lookCoroutine = mono.StartCoroutine(LookAround());
     }

@@ -1472,47 +1472,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2852698626174528499, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      propertyPath: m_Speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+    - target: {fileID: 7752061312330321446, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: hqPoint
       value: 
       objectReference: {fileID: 2115397702}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      propertyPath: canChase
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      propertyPath: chaseDist
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      propertyPath: attackDist
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      propertyPath: patrolPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+    - target: {fileID: 7752061312330321446, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1807514311}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+    - target: {fileID: 7752061312330321446, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 2012013923}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+    - target: {fileID: 7752061312330321446, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1823585195}
-    - target: {fileID: 4942594815335571636, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+    - target: {fileID: 7752061312330321446, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
       propertyPath: patrolPoints.Array.data[3]
       value: 
       objectReference: {fileID: 816233880}
@@ -1560,47 +1536,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4228532385966815335, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8597820343575634893, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5879427302069698682}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
---- !u!1 &5879427302069698681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8597820343575634893, guid: eca4dce8f28ea2297af3e1d43c83651d, type: 3}
-  m_PrefabInstance: {fileID: 5879427302069698680}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5879427302069698682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5879427302069698681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a18e89325155405b8ef2a4da312f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 1807514311}
-  - {fileID: 2012013923}
-  - {fileID: 1823585195}
-  - {fileID: 816233880}
-  hqPoint: {fileID: 2115397702}
-  lookTime: 1
-  sleepTime: 3
-  minimumDot: 0.73
-  chaseDist: 9
-  attackDist: 3.5
-  patrolStoppingDistance: 1
-  attackDuration: 2
-  canChase: 1
-  chaseSpeed: 8
 --- !u!1001 &6684365288524139148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1619,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493498474780544496, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.99
       objectReference: {fileID: 0}
     - target: {fileID: 7493498474780544496, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1627,7 +1567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493498474780544496, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6.29
       objectReference: {fileID: 0}
     - target: {fileID: 7493498474780544496, guid: 5a772f9e212f1ad63bdd174b86f2ca22, type: 3}
       propertyPath: m_LocalRotation.w

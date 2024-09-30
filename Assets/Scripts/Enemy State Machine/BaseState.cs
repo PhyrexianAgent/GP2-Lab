@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public abstract class BaseState : IState
 {
-    public static Transform player;
     protected static readonly int Walk; // Ignore until animated enemies are implemented and add one per animation implemented with these states
     protected readonly Animator anim; // Ignore until animated enemies are implemented
     protected readonly NavMeshAgent agent;

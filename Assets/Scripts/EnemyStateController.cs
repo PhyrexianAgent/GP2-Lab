@@ -25,16 +25,21 @@ public class EnemyStateController : MonoBehaviour
     void Awake(){
         if (player == null)
             player = GameObject.FindWithTag("Player").transform;
+
+            
+        //Debug.Log(player.position);
     }
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        float baseSpeed = agent.speed;
         stateMachine = new StateMachine();
 
-        PatrollingToPoint patrolState = new PatrollingToPoint(agent, patrolPoints, hqPoint, agent.speed);
+        PatrollingToPoint patrolState = new PatrollingToPoint(agent, patrolPoints, hqPoint, baseSpeed);
         LookingAround lookingState = new LookingAround(agent, this, lookTime);
         Sleep sleepState = new Sleep(agent, this, sleepTime);
-        ReturningToHQ returnState = new ReturningToHQ(agent, hqPoint, agent.speed);
+        ReturningToHQ returnState = new ReturningToHQ(agent, hqPoint, baseSpeed);
+        Chase chaseState = new Chase(agent, this, transform, player, attackDist, chaseSpeed, attackDuration);
 
         stateMachine.AddTransition(patrolState, lookingState, new FuncPredicate(() => agent.remainingDistance == 0));
         stateMachine.AddTransition(lookingState, returnState, new FuncPredicate(() => patrolState.ReturnToHQ));
@@ -44,7 +49,12 @@ public class EnemyStateController : MonoBehaviour
             return lookingState.DoneLooking && !patrolState.ReturnToHQ;
         }));
         stateMachine.AddTransition(sleepState, patrolState, new FuncPredicate(() => sleepState.DoneSleeping));
-        stateMachine.AddTransition(returnState, sleepState, new FuncPredicate(() => agent.remainingDistance == 0));
+        stateMachine.AddTransition(returnState, sleepState, new FuncPredicate(() => agent.remainingDistance <= 2f));
+        stateMachine.AddTransition(lookingState, chaseState, new FuncPredicate(() => canChase && PlayerInViewAngle() && InChaseDistance()));
+        stateMachine.AddTransition(patrolState, chaseState, new FuncPredicate(() => canChase && PlayerInViewAngle() && InChaseDistance()));
+        stateMachine.AddTransition(chaseState, returnState, new FuncPredicate(() => chaseState.WasHit));
+        stateMachine.AddTransition(chaseState, patrolState, new FuncPredicate(() => !InChaseDistance()));
+        
 
         stateMachine.SetState(sleepState);
     }
@@ -58,4 +68,18 @@ public class EnemyStateController : MonoBehaviour
     void FixedUpdate(){
         stateMachine.FixedUpdate();
     }
+
+    float MinValue(float value, float min){
+        if (value > 0 && value < min)
+            value = -1;
+        return value;
+    }
+
+    bool PlayerInViewAngle(){
+        Vector3 diff = player.position - transform.position;
+        diff.Normalize();
+        return MinValue(Vector3.Dot(transform.forward, diff), minimumDot) > 0;
+    }
+
+    bool InChaseDistance() => Vector3.Distance(player.transform.position, transform.position) <= chaseDist;
 }

@@ -14,6 +14,7 @@ public class ReturningToHQ : BaseState
     }
 
     public override void OnEnter(){
+        Debug.Log("returning");
         agent.speed = returningSpeed;
         agent.destination = hqPoint.position;
     }

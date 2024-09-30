@@ -28,6 +28,6 @@ public class PatrollingToPoint : BaseState
         if (ReturnToHQ)
             index = 0;
         if (!ReturnToHQ)
-            agent.destination = points[index].position;
+            agent.SetDestination(points[index].position);
     }
 }

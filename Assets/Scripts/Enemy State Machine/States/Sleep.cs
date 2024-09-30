@@ -22,6 +22,7 @@ public class Sleep : BaseState
     }
 
     public override void OnEnter(){
+        Debug.Log("sleeping");
         doneSleeping = false;
         mono.StartCoroutine(SleepWait());
     }
